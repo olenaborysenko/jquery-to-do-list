@@ -20,7 +20,13 @@ $("ul").on("click", "span", function(event) {
 $("input[type='text']").keypress(function(event) {
 	if(event.which === 13){
 		var newTodo = $(this).val();
+		var textTodo = stripHTML(newTodo);
 		$(this).val("");
-		$("ul").append("<li><span><i class='fa fa-eraser'></i></span> " + newTodo + "</li>");
+		$("ul").append("<li><span><i class='fa fa-eraser'></i></span> " + textTodo + "</li>");
 	}
-})
+});
+
+function stripHTML(text) {
+	var regex = /(<([^>]+)>)/ig;
+	return text.replace(regex, "");
+};
